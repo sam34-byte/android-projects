@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/tux" />
+
+    <RelativeLayout
+        android:id="@+id/rlEditBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/inputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_toLeftOf="@+id/bottomButton"
+            android:hint="Enter Some Text" />
+
+        <Button
+            android:id="@+id/bottomButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/yellow"
+            android:text="Click Me"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlEditBtn"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/yellow"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/subTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Sub-Title"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
