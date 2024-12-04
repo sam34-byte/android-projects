@@ -1,5 +1,7 @@
 package com.theandroidfactory.SeasonTwo
 
+import java.io.Serializable
+
 data class DistroTile(
     val id : String = "",
     val headerImgResId : Int = 0,
@@ -8,4 +10,4 @@ data class DistroTile(
     val descriptionLong : String = "",
     val buttonText : String = "",
     val headerImageUrl : String ? = null
-)
+) : Serializable

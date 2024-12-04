@@ -1,5 +1,6 @@
 package com.theandroidfactory.SeasonTwo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,13 +8,17 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DistroTileInterface {
+
+    private lateinit var distroTileList : ArrayList<DistroTile>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val distroTileList = getDistroList()
-        val distroTileAdapter = DistroTileAdapter(distroTileList)
+        distroTileList = getDistroList()
+
+        val distroTileAdapter = DistroTileAdapter(distroTileList, this)
         val recyclerView = findViewById<RecyclerView>(R.id.rV)
 
         recyclerView.adapter = distroTileAdapter
@@ -22,6 +27,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onLearnMoreButtonClicked(position: Int) {
+        val distroTile = distroTileList[position]
+        val intent = Intent(this, DistroTileDetailActivity::class.java)
+        intent.putExtra("distroTile", distroTile)
+        startActivity(intent)
+    }
+    
     private fun getDistroList():ArrayList<DistroTile>{
         return ArrayList<DistroTile>().apply{
             add(
@@ -70,4 +82,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
+
 }

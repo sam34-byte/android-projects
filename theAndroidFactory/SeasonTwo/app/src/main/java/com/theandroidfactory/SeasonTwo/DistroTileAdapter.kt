@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 
 class DistroTileAdapter(
-    private val data : ArrayList<DistroTile>
+    private val data : ArrayList<DistroTile>,
+    private val distroTileInterface: DistroTileInterface
 ) : RecyclerView.Adapter<DistroTileAdapter.DistroTileHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DistroTileHolder {
@@ -21,7 +22,7 @@ class DistroTileAdapter(
     }
 
     override fun onBindViewHolder(holder: DistroTileHolder, position: Int) {
-        holder.onBind(data[position])
+        holder.onBind(data[position], distroTileInterface)
     }
 
     inner class DistroTileHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
@@ -32,14 +33,14 @@ class DistroTileAdapter(
         private val descriptionTextView : TextView = itemView.findViewById(R.id.descriptionTextView)
         private val button : MaterialButton = itemView.findViewById(R.id.button)
 
-        fun onBind(distroTile : DistroTile){
+        fun onBind(distroTile : DistroTile, distroTileInterface: DistroTileInterface){
 
             headerImageView.setImageResource(distroTile.headerImgResId)
             titleTextView.text = distroTile.title
             descriptionTextView.text = distroTile.description
 
             button.setOnClickListener{
-                Toast.makeText(it.context, "$adapterPosition clicked !", Toast.LENGTH_SHORT).show()
+                distroTileInterface.onLearnMoreButtonClicked(adapterPosition)
             }
         }
     }
